@@ -20,7 +20,7 @@
 # All versions of Ceph below Infernalis needs selinux disabled or in Permissive mode
 execute 'set selinux' do
   command 'setenforce 0'
-  not_if "getenforce | grep Permissive"
+  not_if "getenforce | grep -E '(Permissive|Disabled)'"
 end
 
 include_recipe 'ceph-chef::fsid'
